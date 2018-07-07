@@ -8,7 +8,7 @@ Epose 项目以 posenet 为基础，实现动作识别与相似度分析功能�
 
 ## 运行步骤
 1. 安装正确版本的 mysql 与 jdk
-2. 配置 mysql 的 root 账号，设置密码为 123456
+2. 配置 mysql 的 root 账号，设置密码为 Di9Zy;2hCHQc
 3. 在 mysql 中创建数据库 epose
 4. 命令行输入 java -jar epose.jar 运行
 5. 在浏览器中输入 http://localhost:8080
