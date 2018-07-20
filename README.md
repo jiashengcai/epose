@@ -19,6 +19,8 @@ Epose 项目以 posenet 为基础，实现动作识别与相似度分析功能�
 - spring.datasource.username = epose
 - spring.datasource.password = WKFA*IfTP2l>
 
+数据库管理界面 http://35.232.39.13/phpmyadmin/
+
 6. 注册账号并登录
 7. 点击右方的继续学习按钮
 8. 进入学习页面，做出相应的动作并得到评分
