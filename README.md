@@ -15,9 +15,9 @@ Epose 项目以 posenet 为基础，实现动作识别与相似度分析功能�
 
 已经配置好数据库
 
-spring.datasource.url = jdbc:mysql://35.232.39.13:3306/epose?useSSL=false&useUnicode=true&characterEncoding=utf-8
-spring.datasource.username = epose
-spring.datasource.password = WKFA*IfTP2l>
+- spring.datasource.url = jdbc:mysql://35.232.39.13:3306/epose?useSSL=false&useUnicode=true&characterEncoding=utf-8
+- spring.datasource.username = epose
+- spring.datasource.password = WKFA*IfTP2l>
 
 6. 注册账号并登录
 7. 点击右方的继续学习按钮
