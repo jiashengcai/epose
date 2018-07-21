@@ -84,14 +84,6 @@
 <!--/ NAVBAR -->
 
 
-<!--<div id="page1"></div>
-<div id="page2"></div>
-<script>
-    $("#page1").load("page/menu.html");
-    $("#page2").load("page/Page_2.html");
-</script>-->
-
-
 <!-- NAVIGATION - MENU -->
 <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
     <div class="main-menu-content">
@@ -144,9 +136,11 @@
 <!-- CONTENT -->
 <div th:replace="@{'/action' + ${actionid}} :: content"></div>
 <!--<iframe id="content" th:src="@{'/action' + ${actionid}}" style="margin:0;padding:0;height:100%;-->
-     <!--width:100%;right:0px;border:solid 0px red;" frameborder="0">-->
+     <!--width:100%;right:0px;border:solid 0px red;" frameborder="0">
+     </iframe>
+     -->
 
-</iframe>
+
 <!--/ CONTENT -->
 
 <footer class="footer footer-static footer-light navbar-border navbar-shadow">
