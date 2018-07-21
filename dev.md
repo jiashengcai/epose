@@ -12,12 +12,12 @@
 用户名 密码
 邮箱
 
-## select.html
+## selectClass.html
 选课页面
 
 课程类型，课程列表（课程图片，课程标题，课程简介，课程介绍链接）
 
-## course.html
+## classInfo.html
 课程介绍链接
 
 精美的课程内容介绍
