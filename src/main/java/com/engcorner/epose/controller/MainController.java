@@ -53,9 +53,20 @@ public class MainController implements WebMvcConfigurer {
         return "login";
     }
 
+
+    @GetMapping("/edit")
+    public String edit() {
+        return "edit";
+    }
+
     @GetMapping("/register")
     public String register(User user) {
         return "register";
+    }
+
+    @GetMapping("/chat")
+    public String chat() {
+        return "chat";
     }
 
     @PostMapping("/register")

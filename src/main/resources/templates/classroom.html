@@ -70,10 +70,10 @@
                       <img th:src="@{/app-assets/images/portrait/small/avatar-s-19.png}" alt="avatar"><i></i></span>
                         </a>
                         <!-- 个人信息（图标） -->
-                        <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#"><i class="ft-user"></i> 编辑个人信息</a>
-                            <a class="dropdown-item" href="#"><i class="ft-mail"></i> 我的收件箱</a>
+                        <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" th:href="@{/edit}"><i class="ft-user"></i> 编辑个人信息</a>
+                            <a class="dropdown-item" th:href="@{/chat}"><i class="ft-mail"></i> 我的收件箱</a>
                             <a class="dropdown-item" href="#"><i class="ft-check-square"></i> 任务</a>
-                            <a class="dropdown-item" href="#"><i class="ft-message-square"></i> 数据图表</a>
+                            <a class="dropdown-item" th:href="@{/person}"><i class="ft-message-square"></i> 数据图表</a>
                             <div class="dropdown-divider"></div><a class="dropdown-item" th:href="@{/logout}"><i class="ft-power"></i> 退出</a>
                         </div>
                     </li>
@@ -90,6 +90,7 @@
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             <li class=" nav-item active"><a th:href="@{/classroom}"><i class="la la-home"></i><span class="menu-title" data-i18n="nav.dash.main">我的课程</span></a>
             </li>
+            <!--TODO 补充选课链接-->
             <li class=" nav-item"><a href="#"><i class="la la-television"></i><span class="menu-title" data-i18n="nav.templates.main">所有课程</span></a>
             </li>
         </ul>
@@ -105,14 +106,17 @@
             <!-- Description -->
             <section id="description" class="card">
                 <div class="card-header">
+                    <!--TODO-->
                     <h4 class="card-title">最近学习的课程</h4>
                 </div>
                 <div class="row">
                     <div class="col-md-8 col-12">
                         <div class="card-content">
                             <div class="card-body">
+                                <!--TODO 最近学习的课程-->
                                 <H4><b>继续学习课程 瑜伽下犬式</b></H4>
                                 <div class="card-text">
+                                    <!--TODO 最近学习的动作-->
                                     <p>正在学习 下犬式动作二</p>
                                 </div>
 
@@ -120,15 +124,16 @@
                         </div>
                     </div>
                     <div class="center col-md-4 col-12">
+                        <!--TODO 跳转到最近学习的课程-->
                         <a th:href="@{/class}"><button type="button" class="btn btn-success btn-block">继续学习</button></a>
                     </div>
                 </div>
-
             </section>
             <!--/ Description -->
             <!-- CSS Classes -->
             <section id="css-classes" class="card">
                 <div class="card-header">
+                    <!--TODO 推荐课程-->
                     <h4 class="card-title">课程推荐</h4>
                     <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                     <div class="heading-elements">
@@ -149,6 +154,7 @@
                 </div>
             </section>
             <!--/ CSS Classes -->
+            <!--TODO 加入的课程列表-->
             <p>我加入的课程
             </p>
             <div class="row match-height">
