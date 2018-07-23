@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      lang="en" data-textdirection="ltr" class="loaded">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> epose-设置
+    </title>
+    <link rel="apple-touch-icon" th:href="@{/app-assets/images/ico/apple-icon-120.png}">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/app-assets/images/ico/favicon.ico}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700"
+          rel="stylesheet">
+    <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css"
+          rel="stylesheet">
+
+    <!-- BEGIN VENDOR CSS-->
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/css/vendors.css}">
+    <!-- END VENDOR CSS-->
+    <!-- BEGIN MODERN CSS-->
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/css/app.css}">
+    <!-- END MODERN CSS-->
+    <!-- BEGIN Page Level CSS-->
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/css/core/menu/menu-types/vertical-menu-modern.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/css/core/colors/palette-gradient.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/charts/jquery-jvectormap-2.0.3.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/vendors/css/charts/morris.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/fonts/simple-line-icons/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/app-assets/css/core/colors/palette-gradient.css}">
+    <!-- END Page Level CSS-->
+    <!-- BEGIN Custom CSS-->
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/style.css}">
+    <!-- END Custom CSS-->
+</head>
+<!-- BODY -->
+<body class="vertical-layout vertical-menu-modern 2-columns   menu-expanded fixed-navbar"
+      data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
+<!-- NAVBAR -->
+<nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-dark navbar-shadow">
+    <div class="navbar-wrapper">
+        <div class="navbar-header">
+            <ul class="nav navbar-nav flex-row">
+                <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
+                <li class="nav-item mr-auto">
+                    <a class="navbar-brand" href="#">
+                        <img class="brand-logo" alt="modern admin logo" th:src="@{/app-assets/images/logo/logo.png}">
+                        <h3 class="brand-text">Epose</h3>
+                    </a>
+                </li>
+                <li class="nav-item d-none d-md-block float-right"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="toggle-icon ft-toggle-right font-medium-3 white" data-ticon="ft-toggle-right"></i></a></li>
+                <li class="nav-item d-md-none">
+                    <a class="nav-link open-navbar-container" data-toggle="collapse" data-target="#navbar-mobile"><i class="la la-ellipsis-v"></i></a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-container content">
+            <div class="collapse navbar-collapse" id="navbar-mobile">
+                <ul class="nav navbar-nav mr-auto float-left">
+                    <!-- 最大化 -->
+                    <li class="nav-item d-none d-md-block"><h4>我的课程</h4></li>
+                </ul>
+                <ul class="nav navbar-nav float-right">
+                    <li class="dropdown dropdown-user nav-item">
+                        <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
+                    <span class="mr-1">你好
+                      <span class="user-name text-bold-700">dx</span>
+                    </span>
+                            <span class="avatar avatar-online">
+                      <img th:src="@{/app-assets/images/portrait/small/avatar-s-19.png}" alt="avatar"><i></i></span>
+                        </a>
+                        <!-- 个人信息（图标） -->
+                        <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" th:href="@{/edit}"><i class="ft-user"></i> 编辑个人信息</a>
+                            <a class="dropdown-item" th:href="@{/chat}"><i class="ft-mail"></i> 我的收件箱</a>
+                            <a class="dropdown-item" href="#"><i class="ft-check-square"></i> 任务</a>
+                            <a class="dropdown-item" th:href="@{/person}"><i class="ft-message-square"></i> 数据图表</a>
+                            <div class="dropdown-divider"></div><a class="dropdown-item" th:href="@{/logout}"><i class="ft-power"></i> 退出</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<!--/ NAVBAR -->
+
+<!-- NAVIGATION - MENU -->
+<div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
+    <div class="main-menu-content">
+        <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+            <li class=" nav-item active"><a th:href="@{/classroom}"><i class="la la-home"></i><span class="menu-title" data-i18n="nav.dash.main">我的课程</span></a>
+            </li>
+            <!--TODO 补充选课链接-->
+            <li class=" nav-item"><a href="#"><i class="la la-television"></i><span class="menu-title" data-i18n="nav.templates.main">所有课程</span></a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--/ NAVIGATION - MENU -->
+
+<!-- CONTENT -->
+<div class="app-content content container-fluid">
+
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-12 mt-3 mb-1">
+                <div class="alert alert-primary alert-dismissible mb-2" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <p>修改成功</p>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+
+            <div class="row">
+                <div class="col-12 mt-3 mb-1">
+                    <h4 class="text-uppercase">账号</h4>
+                </div>
+            </div>
+
+            <div class="row match-height">
+
+                <div class="col-12 d-flex align-items-center justify-content-center">
+                    <div class="col-md-8">
+                    <div class="card" >
+                        <div class="card-header">
+                            <h4 class="card-title">账号</h4>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="nav-vertical">
+                                    <ul class="nav nav-tabs nav-left nav-border-left">
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="baseVerticalLeft1-tab1" data-toggle="tab" aria-controls="tabVerticalLeft11" href="#tabVerticalLeft11" aria-expanded="true">个人信息</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="baseVerticalLeft1-tab2" data-toggle="tab" aria-controls="tabVerticalLeft12" href="#tabVerticalLeft12" aria-expanded="false">更改密码</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="baseVerticalLeft1-tab3" data-toggle="tab" aria-controls="tabVerticalLeft13" href="#tabVerticalLeft13" aria-expanded="false">已绑定账号</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content px-1">
+                                        <div role="tabpanel" class="tab-pane" id="tabVerticalLeft11" aria-expanded="true" aria-labelledby="baseVerticalLeft1-tab1">
+                                            <form class="form-horizontal" action="#" method="post" novalidate="">
+                                                <fieldset class="form-group position-relative has-icon-left">
+                                                    <input type="text" name="name" id="name" maxlength="16" class="form-control input-lg" placeholder="姓名" tabindex="2" aria-invalid="false">
+                                                    <div class="form-control-position">
+                                                        <i class="ft-user"></i>
+                                                    </div>
+                                                </fieldset>
+                                                <fieldset class="form-group position-relative has-icon-left">
+                                                    <input type="text" name="username" id="username" class="form-control input-lg" placeholder="用户名" tabindex="1" maxlength="16" required="" data-validation-required-message="请输入用户名">
+                                                    <div class="form-control-position">
+                                                        <i class="ft-user"></i>
+                                                    </div>
+                                                    <div class="help-block font-small-3"></div>
+                                                </fieldset>
+                                                <div class="form-actions">
+                                                    <button type="button" class="btn btn-warning mr-1">
+                                                        <i class="ft-x"></i> Cancel
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary">
+                                                        <i class="la la-check-square-o"></i> Save
+                                                    </button>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                        <div class="tab-pane active" id="tabVerticalLeft12" aria-labelledby="baseVerticalLeft1-tab2">
+                                            <form class="form-horizontal" action="#" method="post" novalidate="">
+                                                <fieldset class="form-group position-relative has-icon-left">
+                                                    <input type="password" name="password" id="password" class="form-control input-lg" placeholder="密码" tabindex="2" maxlength="16" required="">
+                                                    <div class="form-control-position">
+                                                        <i class="la la-key"></i>
+                                                    </div>
+                                                    <div class="help-block font-small-3"></div>
+                                                </fieldset>
+                                                <fieldset class="form-group position-relative has-icon-left">
+                                                    <input type="password" id="password_confirmation" class="form-control input-lg" placeholder="再次输入密码" tabindex="3" maxlength="16" data-validation-matches-match="password" data-validation-matches-message="两次密码不一致">
+                                                    <div class="form-control-position">
+                                                        <i class="la la-key"></i>
+                                                    </div>
+                                                    <div class="help-block font-small-3"></div>
+                                                </fieldset>
+                                                <div class="form-actions">
+                                                    <button type="button" class="btn btn-warning mr-1">
+                                                        <i class="ft-x"></i> Cancel
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary">
+                                                        <i class="la la-check-square-o"></i> Save
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="tab-pane" id="tabVerticalLeft13" aria-labelledby="baseVerticalLeft1-tab3">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mt-3 mb-1">
+                <h4 class="text-uppercase">查看/续费课程</h4>
+            </div>
+        </div>
+        <div class="row match-height">
+
+            <div class="col-12 d-flex align-items-center justify-content-center">
+                <div class="col-md-8">
+                    <div class="card" >
+                        <div class="card-header">
+                            <h4 class="card-title">查看/续费课程</h4>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="nav-vertical">
+                                    <ul class="nav nav-tabs nav-left nav-border-left">
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="baseVerticalLeft1-tab9" data-toggle="tab" aria-controls="tabVerticalLeft11" href="#tabVerticalLeft19" aria-expanded="true">续费</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="baseVerticalLeft1-tab8" data-toggle="tab" aria-controls="tabVerticalLeft12" href="#tabVerticalLeft18" aria-expanded="false">单项课程</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="baseVerticalLeft1-tab7" data-toggle="tab" aria-controls="tabVerticalLeft13" href="#tabVerticalLeft17" aria-expanded="false">积分</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content px-1">
+                                        <div role="tabpanel" class="tab-pane" id="tabVerticalLeft19" aria-expanded="true" aria-labelledby="baseVerticalLeft1-tab9">
+                                            <!--续费-->
+
+                                        </div>
+                                        <div class="tab-pane active" id="tabVerticalLeft18" aria-labelledby="baseVerticalLeft1-tab8">
+                                            <!--单项课程-->
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-12">
+                                                    <div class="card">
+                                                        <div class="card-content">
+                                                            <div class="card-body">
+                                                                <h4 class="card-title info">课程1</h4>
+                                                                <p class="card-text">学习这门单项课程无需付费。</p>
+
+                                                                <a href="#" class="btn btn-outline-info">退课</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-12">
+                                                    <div class="card">
+                                                        <div class="card-content">
+                                                            <div class="card-body">
+                                                                <h4 class="card-title info">课程2</h4>
+                                                                <p class="card-text">学习这门单项课程无需付费。</p>
+
+                                                                <a href="#" class="btn btn-outline-info">退课</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-12">
+                                                    <div class="card">
+                                                        <div class="card-content">
+                                                            <div class="card-body">
+                                                                <h4 class="card-title info">课程3</h4>
+                                                                <p class="card-text">学习这门单项课程无需付费。</p>
+
+                                                                <a href="#" class="btn btn-outline-info">退课</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="tabVerticalLeft17" aria-labelledby="baseVerticalLeft1-tab7">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+<!--/ CONTENT -->
+
+<footer class="footer footer-static footer-light navbar-border navbar-shadow">
+    <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2">
+        <span class="float-md-left d-block d-md-inline-block">Copyright &copy; 2018 <span class="text-bold-700">dx</span>, All rights reserved. </span>
+    </p>
+    <!-- ... -->
+</footer>
+
+<!-- BEGIN VENDOR JS-->
+<script th:src="@{/app-assets/vendors/js/vendors.min.js}" type="text/javascript"></script>
+<!-- BEGIN VENDOR JS-->
+<!-- BEGIN PAGE VENDOR JS-->
+<script th:src="@{/app-assets/vendors/js/charts/chart.min.js}" type="text/javascript"></script>
+<script th:src="@{/app-assets/vendors/js/charts/raphael-min.js}" type="text/javascript"></script>
+<script th:src="@{/app-assets/vendors/js/charts/morris.min.js}" type="text/javascript"></script>
+<script th:src="@{/app-assets/vendors/js/charts/jvector/jquery-jvectormap-2.0.3.min.js}"
+        type="text/javascript"></script>
+<script th:src="@{/app-assets/vendors/js/charts/jvector/jquery-jvectormap-world-mill.js}"
+        type="text/javascript"></script>
+<script th:src="@{/app-assets/data/jvector/visitor-data.js}" type="text/javascript"></script>
+<!-- END PAGE VENDOR JS-->
+<!-- BEGIN MODERN JS-->
+<script th:src="@{/app-assets/js/core/app-menu.js}" type="text/javascript"></script>
+<script th:src="@{/app-assets/js/core/app.js}" type="text/javascript"></script>
+<script th:src="@{/app-assets/js/scripts/customizer.js}" type="text/javascript"></script>
+<!-- END MODERN JS-->
+<!-- BEGIN PAGE LEVEL JS-->
+<script th:src="@{/app-assets/js/scripts/pages/dashboard-sales.js}" type="text/javascript"></script>
+<!-- END PAGE LEVEL JS-->
+</body>
+<!--/ BODY -->
+</html>

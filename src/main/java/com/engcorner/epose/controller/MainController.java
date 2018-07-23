@@ -13,7 +13,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -53,9 +52,25 @@ public class MainController implements WebMvcConfigurer {
         return "login";
     }
 
+
+    @GetMapping("/setting")
+    public String edit() {
+        return "setting";
+    }
+
     @GetMapping("/register")
     public String register(User user) {
         return "register";
+    }
+
+    @GetMapping("/chat")
+    public String chat() {
+        return "chat";
+    }
+
+    @GetMapping("/person")
+    public String person() {
+        return "person";
     }
 
     @PostMapping("/register")
