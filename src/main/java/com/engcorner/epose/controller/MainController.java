@@ -39,12 +39,12 @@ public class MainController implements WebMvcConfigurer {
         return "classroom";
     }
 
-    @GetMapping("/class")
-    public String myclass(Model model, HttpServletRequest request) {
+    @GetMapping("/course")
+    public String course(Model model, HttpServletRequest request) {
         String actionid = request.getParameter("actionid");
         if (actionid == null) actionid = "1-1";
         model.addAttribute("actionid", actionid);
-        return "class";
+        return "course";
     }
 
     @GetMapping("/login")
@@ -71,6 +71,10 @@ public class MainController implements WebMvcConfigurer {
     @GetMapping("/person")
     public String person() {
         return "person";
+    }
+    @GetMapping("/test")
+    public String test() {
+        return "chat-application";
     }
 
     @PostMapping("/register")
