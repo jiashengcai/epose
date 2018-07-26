@@ -74,7 +74,7 @@ public class MainController implements WebMvcConfigurer {
     }
     @GetMapping("/test")
     public String test() {
-        return "chat-application";
+        return "test";
     }
 
     @PostMapping("/register")
