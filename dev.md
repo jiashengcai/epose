@@ -6,7 +6,7 @@
 - 显示部分个人信息 user
 - 提供编辑个人信息入口 setting.html
 - 选课入口 selectcourse.html
-- 学习动作入口 course.html
+- 学习动作入口 course. 
 
 需要到的具体字段
 - 用户名(username)

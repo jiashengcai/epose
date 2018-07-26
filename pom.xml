@@ -68,7 +68,11 @@
 		</dependency>
 
 		<dependency>
-			<!--热部署插件 shift + ctrl + atl +/ -->
+			<!--热部署插件
+			 使用方法 https://blog.csdn.net/xusheng_Mr/article/details/78771746
+			 1、点击： file ，Settings ，Build ,Execution,Deplment
+			 2、shift + ctrl + atl +/  勾选 complier.automake.allow.when.app.running
+			 -->
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
