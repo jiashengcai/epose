@@ -36,6 +36,7 @@ public class MainController implements WebMvcConfigurer {
 
     @RequestMapping(value = {"/", "/home", "/index", "/classroom"})
     public String home() {
+
         return "classroom";
     }
 
