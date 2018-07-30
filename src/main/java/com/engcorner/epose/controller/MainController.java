@@ -1,6 +1,10 @@
 package com.engcorner.epose.controller;
 
+import com.engcorner.epose.domain.course.Course;
 import com.engcorner.epose.domain.user.User;
+import com.engcorner.epose.domain.user.UserPose;
+import com.engcorner.epose.repository.course.CourseRepository;
+import com.engcorner.epose.repository.user.UserPoseRepository;
 import com.engcorner.epose.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -29,14 +33,41 @@ public class MainController implements WebMvcConfigurer {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    UserPoseRepository userPoseRepository;
+
+    @Autowired
+    CourseRepository courseRepository;
+
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/action1-1").setViewName("action1-1");
     }
 
     @RequestMapping(value = {"/", "/home", "/index", "/classroom"})
-    public String home() {
+    public String home(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) authentication.getPrincipal();
+        model.addAttribute("username", user.getUsername());
+        model.addAttribute("name", user.getName());
+        Long courseid = user.getUserPose().getLastCourse();
+        if (courseid == null) {
+            model.addAttribute("lastCourse", null);
+        } else {
+            model.addAttribute("lastCourse", courseRepository.findById(courseid).get());
+        }
+        model.addAttribute("currentAction", user.getUserPose().getCurrentAction());
+        model.addAttribute("courseList", courseRepository.findAll());
         return "classroom";
+    }
+
+    @RequestMapping(value = {"/class2"})
+    public String class2(Model model, HttpServletRequest request) {
+        String courseid = request.getParameter("courseid");
+        Course curcourse = courseRepository.findById(Long.parseLong(courseid)).get();
+        model.addAttribute("course", curcourse);
+        model.addAttribute("actions", curcourse.getActions());
+        return "class2";
     }
 
     @GetMapping("/course")
@@ -87,7 +118,18 @@ public class MainController implements WebMvcConfigurer {
             model.addAttribute("message", "用户名“" + user.getUsername() + "”已存在");
             return "register";
         }
+
         user.setPassword(bcryptEncoder.encode(user.getPassword()));
+
+        // 初始化用户学习状态
+        UserPose userPose = new UserPose();
+        userPose.setCourseAverScore(new Long(0));
+        userPose.setCourseMaxScore(new Long(0));
+        userPose.setCourseMinScore(new Long(0));
+        userPose.setPartScores("0,0,0,0,0,0,0,0");
+        userPoseRepository.save(userPose);
+
+        user.setUserPose(userPose);
         userRepository.save(user);
         return "redirect:/login";
     }

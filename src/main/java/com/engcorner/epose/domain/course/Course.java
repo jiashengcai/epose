@@ -23,7 +23,7 @@ public class Course {
     private String docPath; // 资料下载路径
 
     @OneToMany(cascade=CascadeType.ALL, mappedBy="course")
-    private List<Phase> phases = new ArrayList<Phase>(); // 阶段
+    private List<Action> actions = new ArrayList<Action>(); // 动作
 
     public Long getId() {
         return id;
@@ -65,16 +65,16 @@ public class Course {
         this.docPath = docPath;
     }
 
-    public List<Phase> getPhases() {
-        return phases;
+    public List<Action> getActions() {
+        return actions;
     }
 
-    public void setPhases(List<Phase> phases) {
-        this.phases = phases;
+    public void setActions(List<Action> actions) {
+        this.actions = actions;
     }
 
-    public void addPhase(Phase phase) {
-        phase.setCourse(this);
-        this.phases.add(phase);
+    public void addAction(Action action) {
+        action.setCourse(this);
+        this.actions.add(action);
     }
 }
