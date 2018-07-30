@@ -1,7 +1,13 @@
 package com.engcorner.epose.controller;
 
+import com.engcorner.epose.domain.course.Action;
+import com.engcorner.epose.domain.course.Course;
 import com.engcorner.epose.domain.user.User;
+import com.engcorner.epose.domain.user.UserPose;
+import com.engcorner.epose.repository.course.CourseRepository;
+import com.engcorner.epose.repository.user.UserPoseRepository;
 import com.engcorner.epose.repository.user.UserRepository;
+import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,12 +19,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.ArrayList;
 
 @Controller
 public class MainController implements WebMvcConfigurer {
@@ -29,22 +37,64 @@ public class MainController implements WebMvcConfigurer {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    UserPoseRepository userPoseRepository;
+
+    @Autowired
+    CourseRepository courseRepository;
+
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/action1-1").setViewName("action1-1");
     }
 
     @RequestMapping(value = {"/", "/home", "/index", "/classroom"})
-    public String home() {
-
+    public String home(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) authentication.getPrincipal();
+        model.addAttribute("username", user.getUsername());
+        model.addAttribute("name", user.getName());
+        Long courseid = user.getUserPose().getLastCourse();
+        if (courseid == null) {
+            model.addAttribute("lastCourse", null);
+        } else {
+            model.addAttribute("lastCourse", courseRepository.findById(courseid).get());
+        }
+        model.addAttribute("recommendCourse",null);//推荐课程
+        model.addAttribute("currentAction", user.getUserPose().getCurrentAction());
+        model.addAttribute("courseList", courseRepository.findAll());
         return "classroom";
     }
 
+    @RequestMapping(value = {"/test"})
+    public String test(Model model, HttpServletRequest request) {
+        /*String courseid = request.getParameter("courseid");
+        Course curcourse = courseRepository.findById(Long.parseLong(courseid)).get();
+        model.addAttribute("course", curcourse);
+        model.addAttribute("actions", curcourse.getActions());*/
+        return "action1-1";
+    }
+
     @GetMapping("/course")
-    public String course(Model model, HttpServletRequest request) {
-        String actionid = request.getParameter("actionid");
-        if (actionid == null) actionid = "1-1";
-        model.addAttribute("actionid", actionid);
+    public String course(Model model, HttpServletRequest request,
+                         @RequestParam(value = "actionid", defaultValue = "1") String actionid) {
+        String courseid = request.getParameter("courseid");//获取请求动作id
+        if (courseid == null){
+            return "classroom";
+        }
+        Course curcourse = courseRepository.findById(Long.parseLong(courseid)).get();
+        Action currentAction = null;
+        //TODO 获取请求动作
+        currentAction = new Action();
+        currentAction.setId(Long.parseLong(String.valueOf(actionid)));
+        currentAction.setImagePath("http://markdownpic.oss-cn-shenzhen.aliyuncs.com/18-5-28/36393541.jpg");
+        currentAction.setIntro("http://markdownpic.oss-cn-shenzhen.aliyuncs.com/18-5-28/36393541.jpg");
+        currentAction.setName("动作"+actionid);
+
+        model.addAttribute("actionid", actionid);//当前动作id
+        model.addAttribute("currentAction", currentAction);//当前动作Action
+        model.addAttribute("course", curcourse);//获取当前课程
+        model.addAttribute("actions", curcourse.getActions());//获取课号下的所有动作
         return "course";
     }
 
@@ -73,10 +123,6 @@ public class MainController implements WebMvcConfigurer {
     public String person() {
         return "person";
     }
-    @GetMapping("/test")
-    public String test() {
-        return "test";
-    }
 
     @PostMapping("/register")
     public String checkRegister(@Valid User user, BindingResult bindingResult, Model model) {
@@ -88,7 +134,18 @@ public class MainController implements WebMvcConfigurer {
             model.addAttribute("message", "用户名“" + user.getUsername() + "”已存在");
             return "register";
         }
+
         user.setPassword(bcryptEncoder.encode(user.getPassword()));
+
+        // 初始化用户学习状态
+        UserPose userPose = new UserPose();
+        userPose.setCourseAverScore(new Long(0));
+        userPose.setCourseMaxScore(new Long(0));
+        userPose.setCourseMinScore(new Long(0));
+        userPose.setPartScores("0,0,0,0,0,0,0,0");
+        userPoseRepository.save(userPose);
+
+        user.setUserPose(userPose);
         userRepository.save(user);
         return "redirect:/login";
     }

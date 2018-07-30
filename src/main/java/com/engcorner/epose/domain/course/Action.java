@@ -9,8 +9,8 @@ public class Action {
     private Long id;
 
     @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH},optional=false)
-    @JoinColumn(name="phase_id")
-    private Phase phase; // 课程名称
+    @JoinColumn(name="course_id")
+    private Course course; // 课程名称
 
     @Column(nullable = false, length = 32)
     private String name; // 动作名称
@@ -53,11 +53,11 @@ public class Action {
         this.imagePath = imagePath;
     }
 
-    public Phase getPhase() {
-        return phase;
+    public Course getCourse() {
+        return course;
     }
 
-    public void setPhase(Phase phase) {
-        this.phase = phase;
+    public void setCourse(Course course) {
+        this.course = course;
     }
 }

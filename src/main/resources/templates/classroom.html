@@ -70,7 +70,7 @@
                     <li class="dropdown dropdown-user nav-item">
                         <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
                     <span class="mr-1">你好
-                      <span class="user-name text-bold-700">dx</span>
+                      <span class="user-name text-bold-700" th:text="${name}">epose</span>
                     </span>
                             <span class="avatar avatar-online">
                       <img th:src="@{/app-assets/images/portrait/small/avatar-s-19.png}" alt="avatar"><i></i></span>
@@ -114,7 +114,7 @@
 
         <div class="content-body">
             <!-- Description -->
-            <section id="description" class="card">
+            <section  id="description"  th:class="${lastCourse} == '' ? 'card' : 'hidden'">
                 <div class="card-header">
                     <!--TODO-->
                     <h4 class="card-title">最近学习的课程</h4>
@@ -124,10 +124,10 @@
                         <div class="card-content">
                             <div class="card-body">
                                 <!--TODO 最近学习的课程-->
-                                <H4><b>继续学习课程 瑜伽下犬式</b></H4>
+                                <H4><b th:text="${lastCourse}">最近学习的课程</b></H4>
                                 <div class="card-text">
                                     <!--TODO 最近学习的动作-->
-                                    <p>正在学习 下犬式动作二</p>
+                                    <p th:text="${currentAction}">正在学习 下犬式动作二</p>
                                 </div>
 
                             </div>
@@ -143,7 +143,7 @@
             </section>
             <!--/ Description -->
             <!-- CSS Classes -->
-            <section id="css-classes" class="card">
+            <section id="css-classes" th:class="${recommendCourse}?'card':'hidden'">
                 <div class="card-header">
                     <!--TODO 推荐课程-->
                     <h4 class="card-title">课程推荐</h4>
@@ -159,7 +159,7 @@
                 <div class="card-content">
                     <div class="card-body">
                         <div class="card-text">
-                            <p>课程推荐
+                            <p th:text="${recommendCourse}">
                             </p>
                         </div>
                     </div>
@@ -167,60 +167,21 @@
             </section>
             <!--/ CSS Classes -->
 
-            <section class="card">
+            <section th:class="${courseList}==''? 'hidden':'card'">
                 <div class="card-header">
                     <h4 class="card-title">已选课程</h4>
                 </div>
                 <div class="card-body">
                     <div class="row match-height">
-                        <div class="col-xl-3 col-md-6 col-sm-12">
+                        <div th:each="course : ${courseList}" class="col-xl-3 col-md-6 col-sm-12">
                             <div class="card" style="height: 388.562px;">
                                 <div class="card-content">
                                     <img class="card-img-top img-fluid" th:src="@{/app-assets/images/carousel/06.jpg}"
                                          alt="Card image cap">
                                     <div class="card-body">
-                                        <h4 class="card-title">课程名称</h4>
-                                        <p class="card-text">课程介绍</p>
-                                        <a th:href="@{/course}" class="btn btn-outline-amber">进入学习</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6 col-sm-12">
-                            <div class="card" style="height: 388.562px;">
-                                <div class="card-content">
-                                    <img class="card-img-top img-fluid" th:src="@{/app-assets/images/carousel/06.jpg}"
-                                         alt="Card image cap">
-                                    <div class="card-body">
-                                        <h4 class="card-title">课程名称</h4>
-                                        <p class="card-text">课程介绍</p>
-                                        <a th:href="@{/course}" class="btn btn-outline-amber">进入学习</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6 col-sm-12">
-                            <div class="card" style="height: 388.562px;">
-                                <div class="card-content">
-                                    <img class="card-img-top img-fluid" th:src="@{/app-assets/images/carousel/06.jpg}"
-                                         alt="Card image cap">
-                                    <div class="card-body">
-                                        <h4 class="card-title">课程名称</h4>
-                                        <p class="card-text">课程介绍</p>
-                                        <a th:href="@{/course}" class="btn btn-outline-amber">进入学习</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6 col-sm-12">
-                            <div class="card" style="height: 388.562px;">
-                                <div class="card-content">
-                                    <img class="card-img-top img-fluid" th:src="@{/app-assets/images/carousel/06.jpg}"
-                                         alt="Card image cap">
-                                    <div class="card-body">
-                                        <h4 class="card-title">课程名称</h4>
-                                        <p class="card-text">课程介绍</p>
-                                        <a th:href="@{/course}" class="btn btn-outline-amber">进入学习</a>
+                                        <h4 class="card-title" th:text="${course.getName()}">课程名称</h4>
+                                        <p class="card-text" th:text="${course.getOverview()}">课程介绍</p>
+                                        <a th:href="@{/course(courseid=${course.getId()})}" class="btn btn-outline-amber">进入学习</a>
                                     </div>
                                 </div>
                             </div>
@@ -228,26 +189,14 @@
                     </div>
                 </div>
             </section>
-            <!--TODO 加入的课程列表-->
-            <p>我加入的课程
-            </p>
-
-            <div class="row">
-                <ul class="nav nav-list">
-
-                    <li class="divider"></li>
-
-                </ul>
-            </div>
         </div>
     </div>
 </div>
 <!--/ CONTENT -->
-
 <footer class="footer footer-static footer-light navbar-border navbar-shadow">
     <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2">
         <span class="float-md-left d-block d-md-inline-block">Copyright &copy; 2018 <span
-                class="text-bold-700">dx</span>, All rights reserved. </span>
+                class="text-bold-700">epose</span>, All rights reserved. </span>
     </p>
     <!-- ... -->
 </footer>

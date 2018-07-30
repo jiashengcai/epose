@@ -2,7 +2,6 @@ package com.engcorner.epose.domain.user;
 
 import com.engcorner.epose.domain.course.Action;
 import com.engcorner.epose.domain.course.Course;
-import com.engcorner.epose.domain.course.Phase;
 
 import javax.persistence.*;
 import java.util.List;
@@ -18,9 +17,6 @@ public class UserCourse {
 
     @ManyToMany(cascade = {CascadeType.REFRESH},fetch = FetchType.EAGER)
     private List<UserActionScore> userActionScores; // 已学习动作
-
-    @OneToOne(fetch = FetchType.EAGER)
-    private Phase curPhase; // 当前阶段
 
     @OneToOne(fetch = FetchType.EAGER)
     private Action curAction; // 当前动作
@@ -50,14 +46,6 @@ public class UserCourse {
 
     public void setUserActionScores(List<UserActionScore> userActionScores) {
         this.userActionScores = userActionScores;
-    }
-
-    public Phase getCurPhase() {
-        return curPhase;
-    }
-
-    public void setCurPhase(Phase curPhase) {
-        this.curPhase = curPhase;
     }
 
     public Action getCurAction() {

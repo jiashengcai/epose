@@ -9,6 +9,10 @@ public class UserPose {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
+    private Long lastCourse; // 上一次学习的课程
+
+    private Long currentAction; // 正在学习的动作
+
     @OneToMany(cascade={ CascadeType.ALL })
     private List<UserCourse> userCourses; // 课程状态
 
@@ -30,6 +34,22 @@ public class UserPose {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getLastCourse() {
+        return lastCourse;
+    }
+
+    public Long getCurrentAction() {
+        return currentAction;
+    }
+
+    public void setCurrentAction(Long currentAction) {
+        this.currentAction = currentAction;
+    }
+
+    public void setLastCourse(Long lastCourse) {
+        this.lastCourse = lastCourse;
     }
 
     public List<UserCourse> getUserCourses() {
