@@ -27,6 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class MainController implements WebMvcConfigurer {
@@ -86,10 +87,18 @@ public class MainController implements WebMvcConfigurer {
         Action currentAction = null;
         //TODO 获取请求动作
         currentAction = new Action();
-        currentAction.setId(Long.parseLong(String.valueOf(actionid)));
+        List<Action> actions = curcourse.getActions();
+        for (Action action :
+                actions) {
+            if (Long.parseLong(courseid) == action.getId()){
+                currentAction=action;
+                break;
+            }
+        }
+        /*currentAction.setId(Long.parseLong(String.valueOf(actionid)));
         currentAction.setImagePath("http://markdownpic.oss-cn-shenzhen.aliyuncs.com/18-5-28/36393541.jpg");
         currentAction.setIntro("http://markdownpic.oss-cn-shenzhen.aliyuncs.com/18-5-28/36393541.jpg");
-        currentAction.setName("动作"+actionid);
+        currentAction.setName("动作"+actionid);*/
 
         model.addAttribute("actionid", actionid);//当前动作id
         model.addAttribute("currentAction", currentAction);//当前动作Action
