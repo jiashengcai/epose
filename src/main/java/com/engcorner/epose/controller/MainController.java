@@ -69,10 +69,6 @@ public class MainController implements WebMvcConfigurer {
 
     @RequestMapping(value = {"/test"})
     public String test(Model model, HttpServletRequest request) {
-        /*String courseid = request.getParameter("courseid");
-        Course curcourse = courseRepository.findById(Long.parseLong(courseid)).get();
-        model.addAttribute("course", curcourse);
-        model.addAttribute("actions", curcourse.getActions());*/
         return "action1-1";
     }
 
@@ -85,7 +81,6 @@ public class MainController implements WebMvcConfigurer {
         }
         Course curcourse = courseRepository.findById(Long.parseLong(courseid)).get();
         Action currentAction = null;
-        //TODO 获取请求动作
         currentAction = new Action();
         List<Action> actions = curcourse.getActions();
         for (Action action :
@@ -95,11 +90,6 @@ public class MainController implements WebMvcConfigurer {
                 break;
             }
         }
-        /*currentAction.setId(Long.parseLong(String.valueOf(actionid)));
-        currentAction.setImagePath("http://markdownpic.oss-cn-shenzhen.aliyuncs.com/18-5-28/36393541.jpg");
-        currentAction.setIntro("http://markdownpic.oss-cn-shenzhen.aliyuncs.com/18-5-28/36393541.jpg");
-        currentAction.setName("动作"+actionid);*/
-
         model.addAttribute("actionid", actionid);//当前动作id
         model.addAttribute("currentAction", currentAction);//当前动作Action
         model.addAttribute("course", curcourse);//获取当前课程
@@ -114,7 +104,10 @@ public class MainController implements WebMvcConfigurer {
 
 
     @GetMapping("/setting")
-    public String edit() {
+    public String edit(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) authentication.getPrincipal();
+        model.addAttribute("username", user.getUsername());
         return "setting";
     }
 
@@ -129,7 +122,10 @@ public class MainController implements WebMvcConfigurer {
     }
 
     @GetMapping("/person")
-    public String person() {
+    public String person(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) authentication.getPrincipal();
+        model.addAttribute("username", user.getUsername());
         return "person";
     }
 
