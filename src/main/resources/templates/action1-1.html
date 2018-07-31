@@ -128,7 +128,7 @@
     <div class="content-wrapper">
         <div class="content-header row">
             <div class="content-header-left col-md-6 col-12 mb-1">
-                <h2 class="content-header-title">概述</h2>
+                <h2 class="content-header-title">概述<script>${actionid}</script></h2>
             </div>
             <div class="content-header-right breadcrumbs-right breadcrumbs-top col-md-6 col-12">
                 <div class="breadcrumb-wrapper col-12">
@@ -179,7 +179,23 @@
             "右腰",
             "左膝",
             "右膝"];
+        function updateScore(actionid,part,total)
+
+        {
+            $.ajax ({
+                url:"updateScore",
+                method:"POST",
+                data:{
+                    actionid:actionid,
+                    part:part,
+                    total:total
+                }
+            });
+        }
         async function onframe() {
+            console.log("1");
+            /*<![CDATA[*/
+            id = [[${actionid}]];
 
             setting.ctx.fillRect(0,0,setting.videoWidth,setting.videoHeight);
             const pose =  await setting.net.estimateSinglePose(setting.video,setting.scale,setting.fliph,setting.stride);
@@ -196,11 +212,17 @@
             scorectx.font = "25px Arial";
             scorectx.fillStyle = "#a5ffd9";
             scorectx.fillRect(0,0,setting.videoWidth/2,setting.videoHeight);
+            var part = "";
+            var total = 0;
             for (var i = 0; i < score.length; ++i) {
                 scorectx.fillStyle = "#4276ff";
                 scorectx.fillText(part[i]+"得分:" + ((score[i] < 0 || isNaN(score[i]))?"无法检测部位":score[i]), 10, 30 * (i + 1));
-
+                part += score[i];
+                total+= score[i];
             }
+            total/=score.length;
+            updateScore(id,part,total);
+            /*]]>*/
             requestAnimationFrame(onframe);
         }
 

@@ -190,7 +190,7 @@
             "左膝",
             "右膝"];
         async function onframe() {
-
+            console.log("2");
             setting.ctx.fillRect(0,0,setting.videoWidth,setting.videoHeight);
             const pose =  await setting.net.estimateSinglePose(setting.video,setting.scale,setting.fliph,setting.stride);
             console.log(pose);
