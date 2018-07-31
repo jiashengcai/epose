@@ -99,22 +99,6 @@
                             </li>
                         </ul>
                     </li>
-
-<!--
-                    <li class="has-sub is-shown"><a class="menu-item" href="#">正位瑜伽下犬变体式</a>
-                        <ul class="menu-content" style="">
-                            <li class=""><a class="menu-item" href="#" onclick="changeSrc('action/action2-1.html')" data-i18n="nav.dash.ecommerce">
-                                <i class="ft-star"></i>动作一</a>
-                            </li>
-                            <li><a class="menu-item" href="#" onclick="changeSrc('action/action2-2.html')" data-i18n="nav.dash.crypto"><i class="ft-star"></i>动作二</a>
-                            </li>
-                            <li><a class="menu-item" href="#" onclick="changeSrc('action/action2-3.html')" data-i18n="nav.dash.crypto"><i class="ft-star"></i>动作三</a>
-                            </li>
-
-                        </ul>
-                    </li>
--->
-
                 </ul>
             </li>
             <!--TODO 资料下载链接，没有的直接把这部分注释掉-->
@@ -172,16 +156,14 @@
                     </div>
                 </div>
             </div>
-
             <video id="video" style='display: none' ></video>
 
             <canvas id="canvas2" style="display: inline"></canvas>
             <canvas id="canvas" style="display: inline;"></canvas>
             <canvas id="canvas3" style="display: inline"></canvas>
-<!--
+
             <img id = "img" th:src="@{/images/actions/1-2.jpg}" style="display: none"/>
--->
-            <img id = "img" th:src="@{${currentAction.getImagePath()}}" style="display: none"/>
+
         </div>
     </div>
     <script>

@@ -174,14 +174,12 @@
                 <div class="card-body">
                     <div class="row match-height">
                         <div th:each="course : ${courseList}" class="col-xl-3 col-md-6 col-sm-12">
-                            <div class="card" style="height: 388.562px;">
+                            <div class="card text-white box-shadow-0 bg-success" >
                                 <div class="card-content">
-                                    <img class="card-img-top img-fluid" th:src="@{/app-assets/images/carousel/06.jpg}"
-                                         alt="Card image cap">
                                     <div class="card-body">
-                                        <h4 class="card-title" th:text="${course.getName()}">课程名称</h4>
+                                        <h4 class="card-title" ><b th:text="${course.getName()}">课程名称</b></h4>
                                         <p class="card-text" th:text="${course.getOverview()}">课程介绍</p>
-                                        <a th:href="@{/course(courseid=${course.getId()})}" class="btn btn-outline-amber">进入学习</a>
+                                        <a th:href="@{/course(courseid=${course.getId()})}" class="btn btn-outline-primary">进入学习</a>
                                     </div>
                                 </div>
                             </div>
