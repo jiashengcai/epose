@@ -216,13 +216,12 @@
                 scorectx.fillText(part[i]+"得分:" + ((score[i] < 0 || isNaN(score[i]))?"无法检测部位":score[i]), 10, 30 * (i + 1));
                 part += score[i];
                 total+= score[i];
-
             }
             total/=score.length;
             updateScore(id,part,total);
+            /*]]>*/
             requestAnimationFrame(onframe);
         }
-
 
 
         Epose.onInited = async function () {
