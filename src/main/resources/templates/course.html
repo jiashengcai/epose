@@ -181,21 +181,32 @@
         function updateScore(actionid,part,total)
         {
             var test={};
-            test['name'] = "name";
-            console.log(test);
+            var data={
+                "actionid":actionid,
+                "part":part,
+                "total":total
+            }
             $.ajax({
-                type : "POST",
+                type : "get",
                 contentType : "application/json",
-                url : "getAjax",
-                data: JSON.stringify(test),
-                dataType: 'json',
-                cache: false,
-                timeout: 60000,
+                url : "course/postdata",
+                data: {
+                    actionid :actionid,
+                    part : part,
+                    total : total
+                },
+                success : function(date,status){
+                    if(status=="success"){
+                        console.log("success");
+                    }else {
+                        console.log("error");
+                    }
+                }
             })
         }
+
         async function onframe() {
             console.log("1");
-            /*<![CDATA[*/
             var id = [[${actionid}]];
             setting.ctx.fillRect(0,0,setting.videoWidth,setting.videoHeight);
             const pose =  await setting.net.estimateSinglePose(setting.video,setting.scale,setting.fliph,setting.stride);
