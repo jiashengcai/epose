@@ -108,232 +108,41 @@
     </div>
 </div>
 <!--/ NAVIGATION - MENU -->
+<script type="application/javascript">
 
+
+</script>
 
 <!-- CONTENT -->
-<div class="app-content content container-fluid">
-    <div class="content-wrapper">
+<div class="container">
 
-        <div class="row">
+    <h3 style="color:blue">POST-GET AJAX Example</h3>
 
-            <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-            <div id="main" style="width: 600px;height:400px;"></div>
-            <script type="text/javascript">
-                // 基于准备好的dom，初始化echarts实例
-                var myChart = echarts.init(document.getElementById('main'));
+    <div>
+        <form class="form-inline" style="margin:20px 20px 20px 20px" id="customerForm">
+            <div class="form-group">
+                <label for="firstname" style="margin-right:5px">FirstName:</label>
+                <input type="text" class="form-control" id="firstname" placeholder="Enter FirstName"/>
+            </div>
+            <div class="form-group">
+                <label for="lastname" style="margin-left:20px; margin-right:5px">LastName:</label>
+                <input type="text" class="form-control" id="lastname" placeholder="Enter LastName"/>
+            </div>
+            <button type="submit" class="btn btn-default" style="margin-left:20px; margin-right:5px">Submit</button>
+        </form>
+    </div>
 
-                // 指定图表的配置项和数据
-                var data_year_rang = [2015, 2016, 2017]
-                var data_dd = [{
-                    'dim_year': 2015,
-                    'radar_indicator': [{
-                        name: '外高桥',
-                        max: 30000
-                    }, {
-                        name: '川沙新镇',
-                        max: 30000
-                    }, {
-                        name: '陆家嘴',
-                        max: 30000
-                    }, {
-                        name: '唐镇',
-                        max: 30000
-                    }, {
-                        name: '浦东新区',
-                        max: 30000
-                    }, {
-                        name: '张江镇',
-                        max: 30000
-                    }, {
-                        name: '其他',
-                        max: 30000
-                    }],
-                    'trade_range': [20000, 20000, 12000, 15000, 5000, 20000]
-                },
-                    {
-                        'dim_year': 2016,
-                        'radar_indicator': [{
-                            name: '外高桥',
-                            max: 30000
-                        }, {
-                            name: '川沙新镇',
-                            max: 30000
-                        }, {
-                            name: '陆家嘴',
-                            max: 30000
-                        }, {
-                            name: '唐镇',
-                            max: 30000
-                        }, {
-                            name: '浦东新区',
-                            max: 30000
-                        }, {
-                            name: '张江镇',
-                            max: 30000
-                        }, {
-                            name: '其他',
-                            max: 30000
-                        }],
-                        'trade_range': [28000, 20000, 28000, 15000, 5000, 20000]
-                    }, {
-                        'dim_year': 2017,
-                        'radar_indicator': [{
-                            name: '外高桥',
-                            max: 30000
-                        }, {
-                            name: '川沙新镇',
-                            max: 30000
-                        },
-                            {
-                                name: '陆家嘴',
-                                max: 30000
-                            }, {
-                                name: '唐镇',
-                                max: 30000
-                            },
-                            {
-                                name: '亲子',
-                                max: 30000
-                            }, {
-                                name: '浦东新区',
-                                max: 30000
-                            }, {
-                                name: '张江镇',
-                                max: 30000
-                            }
-                        ],
-                        'trade_range': [28000, 20000, 28000, 15000, 18000, 20000]
-                    }
-                ]
+    <div class="col-sm-7" id="postResultDiv">
+    </div>
 
-                option = {
-                    tooltip: {},
-                    baseOption: {
-                        title: {
-                            textStyle: {
-                                color: '#fff'
-                            }
-                        },
-                        timeline: {
-                            //  show: false,
-                            // y: 0,
-                            axisType: 'category',
-                            // realtime: false,
-                            // loop: false,
-                            autoPlay: true,
-                            // currentIndex: 2,
-                            playInterval: 5000,
-                            // controlStyle: {
-                            //     position: 'left'
-                            // },
-                            data: data_year_rang,
-                            label: {
-                                formatter: function(s) {
-                                    return (new Date(s)).getFullYear();
-                                }
-                            }
-                        },
-                        backgroundColor: {
-                            type: 'radial',
-                            x: 0.4,
-                            y: 0.4,
-                            r: 0.35,
-                            colorStops: [{
-                                offset: 0,
-                                color: '#1E253E' // 0% 处的颜色
-                            }, {
-                                offset: .2,
-                                color: '#242E5D' // 100% 处的颜色
-                            }, {
-                                offset: 1,
-                                color: '#1E253E' // 100% 处的颜色
-                            }],
-                            globalCoord: false // 缺省为 false
-                        },
-                        color: ['#FFD600'],
-                        tooltip: {},
-                        legend: {
-                            //data: ['预算分配（Allocated Budget）', '实际开销（Actual Spending）']
-                        },
-
-                        series: [{
-                            name: '',
-                            type: 'radar',
-                            areaStyle: {
-                                normal: {
-                                    shadowBlur: 13,
-                                    shadowColor: 'rgba(0,0,0,.2)',
-                                    shadowOffsetX: 0,
-                                    shadowOffsetY: 0,
-                                    opacity: 1
-                                }
-                            },
-                            itemStyle: {
-                                color: '#293C55',
-                                borderColor: '#293C55'
-                            },
-                        }]
-                    },
-
-                    options: [{
-                        title: {
-                            text: data_dd[0].dim_year,
-                        },
-                        radar: {
-
-                            splitNumber: 6,
-                            // shape: 'circle',
-                            indicator: data_dd[0].radar_indicator
-                        },
-                        series: [{
-                            data: [{
-                                value: data_dd[0].trade_range
-                            }]
-                        }]
-                    },
-
-                        {
-                            title: {
-                                text: data_dd[1].dim_year,
-                            },
-                            radar: {
-
-                                splitNumber: 6,
-                                // shape: 'circle',
-                                indicator: data_dd[1].radar_indicator
-                            },
-                            series: [{
-                                data: [{
-                                    value: data_dd[1].trade_range
-                                }]
-                            }]
-                        },
-                        {
-                            title: {
-                                text: data_dd[2].dim_year,
-                            },
-                            radar: {
-
-                                splitNumber: 6,
-                                // shape: 'circle',
-                                indicator: data_dd[2].radar_indicator
-                            },
-                            series: [{
-                                data: [{
-                                    value: data_dd[2].trade_range
-                                }]
-                            }]
-                        }
-
-
-                    ]
-                };
-
-                // 使用刚指定的配置项和数据显示图表。
-                myChart.setOption(option);
-            </script>
+    <div class="col-sm-7" style="margin:20px 0px 20px 0px">
+        <button id="getAllCustomerId" type="button" class="btn btn-primary">Get All Customers</button>
+        <div id="getResultDiv" style="padding:20px 10px 20px 50px">
+            <ul class="list-group">
+            </ul>
         </div>
     </div>
+
 </div>
 <!--/ CONTENT -->
 
@@ -353,7 +162,9 @@
 <script th:src="@{/app-assets/js/core/app-menu.js}" type="text/javascript"></script>
 <script th:src="@{/app-assets/js/core/app.js}" type="text/javascript"></script>
 <script th:src="@{/app-assets/js/scripts/customizer.js}" type="text/javascript"></script>
-<!-- END MODERN JS-->
+<script th:src="@{/js/jquery-3.3.1.js}" type="text/javascript"></script>
+
+<!-- END MODERN E:\Workspaces\workspace\epose\src\main\resources\static\js\JS-->
 <!-- BEGIN PAGE LEVEL JS-->
 <script th:src="@{/app-assets/js/scripts/charts/echarts/echarts.js}" type="text/javascript"></script>
 <!-- END PAGE LEVEL JS-->

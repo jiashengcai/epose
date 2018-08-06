@@ -180,20 +180,23 @@
             "右膝"];
         function updateScore(actionid,part,total)
         {
-            $.ajax ({
-                url:"updateScore",
-                method:"POST",
-                data:{
-                    actionid:actionid,
-                    part:part,
-                    total:total
-                }
-            });
+            var test={};
+            test['name'] = "name";
+            console.log(test);
+            $.ajax({
+                type : "POST",
+                contentType : "application/json",
+                url : "getAjax",
+                data: JSON.stringify(test),
+                dataType: 'json',
+                cache: false,
+                timeout: 60000,
+            })
         }
         async function onframe() {
             console.log("1");
             /*<![CDATA[*/
-            id = [[${actionid}]];
+            var id = [[${actionid}]];
             setting.ctx.fillRect(0,0,setting.videoWidth,setting.videoHeight);
             const pose =  await setting.net.estimateSinglePose(setting.video,setting.scale,setting.fliph,setting.stride);
             console.log(pose);

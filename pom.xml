@@ -45,7 +45,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -66,17 +65,11 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
-			<!--热部署插件
-			 使用方法 https://blog.csdn.net/xusheng_Mr/article/details/78771746
-			 1、点击： file ，Settings ，Build ,Execution,Deplment
-			 2、shift + ctrl + atl +/  勾选 complier.automake.allow.when.app.running
-			 -->
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<optional>true</optional>
-		</dependency>
+		<groupId>com.alibaba</groupId>
+		<artifactId>fastjson</artifactId>
+		<version>1.2.47</version>
+	</dependency>
 	</dependencies>
 
 	<build>
