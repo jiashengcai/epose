@@ -63,14 +63,14 @@ data-open="click" data-menu="vertical-content-menu" data-col="1-column">
                   <div class="card-body">
                     <form class="form-horizontal" th:object="${user}" action="#" th:action="@{/register}" method="post" novalidate>
                       <fieldset class="form-group position-relative has-icon-left">
-                        <input type="text" name="name" id="name" maxlength="16" class="form-control input-lg"
+                        <input th:tabindex="1" type="text" name="name" id="name" maxlength="16" class="form-control input-lg"
                                placeholder="姓名" tabindex="2">
                         <div class="form-control-position">
                           <i class="ft-user"></i>
                         </div>
                       </fieldset>
                       <fieldset class="form-group position-relative has-icon-left">
-                        <input type="text" name="username" id="username" class="form-control input-lg"
+                        <input th:tabindex="2" type="text" name="username" id="username" class="form-control input-lg"
                                placeholder="用户名" tabindex="1" maxlength="16" required data-validation-required-message="请输入用户名">
                         <div class="form-control-position">
                           <i class="ft-user"></i>
@@ -78,7 +78,7 @@ data-open="click" data-menu="vertical-content-menu" data-col="1-column">
                         <div class="help-block font-small-3"></div>
                       </fieldset>
                           <fieldset class="form-group position-relative has-icon-left">
-                            <input type="password" name="password" id="password" class="form-control input-lg"
+                            <input th:tabindex="3" type="password" name="password" id="password" class="form-control input-lg"
                                    placeholder="密码" tabindex="2" maxlength="16" required>
                             <div class="form-control-position">
                               <i class="la la-key"></i>
@@ -86,7 +86,7 @@ data-open="click" data-menu="vertical-content-menu" data-col="1-column">
                             <div class="help-block font-small-3"></div>
                           </fieldset>
                           <fieldset class="form-group position-relative has-icon-left">
-                            <input type="password" id="password_confirmation" class="form-control input-lg"
+                            <input th:tabindex="4" type="password" id="password_confirmation" class="form-control input-lg"
                                    placeholder="再次输入密码" tabindex="3" maxlength="16" data-validation-matches-match="password"
                                    data-validation-matches-message="两次密码不一致">
                             <div class="form-control-position">

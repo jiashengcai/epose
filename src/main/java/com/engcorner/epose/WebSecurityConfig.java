@@ -31,11 +31,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-            	.antMatchers("/app-assets/**").permitAll()
                 .antMatchers("/register").permitAll()
+                .antMatchers("/getAjax").permitAll()
+                .antMatchers("/sendAjax").permitAll()
+                .antMatchers("/test").permitAll()
 				.anyRequest().authenticated()
                 .and()
-
             .formLogin()
                 .loginPage("/login").permitAll()
             .successHandler(authenticationSuccessHandler()) // 登录成功后存储用户信息
@@ -53,11 +54,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
         	.userDetailsService(username -> userRepository.findByUsername(username)).passwordEncoder(bcryptEncoder);
+
     }
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/*.css");
-		web.ignoring().antMatchers("/*.js");
+		web.ignoring().antMatchers("/js/**");
+		web.ignoring().antMatchers("/app-assets/**");
 	}
 }

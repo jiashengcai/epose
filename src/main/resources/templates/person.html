@@ -6,7 +6,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title> 主页 - Epose
+    <title> 我的健身数据
     </title>
     <script th:src="@{/app-assets/js/scripts/charts/echarts/echarts.js}" type="text/javascript"></script>
     <link rel="apple-touch-icon" th:href="@{/app-assets/images/ico/apple-icon-120.png}">
@@ -65,7 +65,7 @@
             <div class="collapse navbar-collapse" id="navbar-mobile">
                 <ul class="nav navbar-nav mr-auto float-left">
                     <!-- 最大化 -->
-                    <li class="nav-item d-none d-md-block"><h4>我的课程</h4></li>
+                    <li class="nav-item d-none d-md-block"><h4>我的健身数据</h4></li>
                 </ul>
                 <ul class="nav navbar-nav float-right">
                     <li class="dropdown dropdown-user nav-item">
@@ -115,223 +115,204 @@
     <div class="content-wrapper">
 
         <div class="row">
-
             <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-            <div id="main" style="width: 600px;height:400px;"></div>
-            <script type="text/javascript">
-                // 基于准备好的dom，初始化echarts实例
-                var myChart = echarts.init(document.getElementById('main'));
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        近三周训练数据
+                        <div class="card-body" >
+                        <div class="row center">
+                            <div class="col-12">
+                                    <div id="main" style="width: 100%;height: 500px;"></div>
+                                    <script type="text/javascript">
+                                        // 基于准备好的dom，初始化echarts实例
+                                        var personContain = document.getElementById('main');
+                                        var personChart=echarts.init(personContain);
+                                        // 指定图表的配置项和数据
+                                        var data_year_rang = ['前二周', '上周', '本周']
+                                        var data_dd = [{
+                                            'dim_year': '前二周',
+                                            'radar_indicator': [{
+                                                name: '颈椎',
+                                                max: 30000
+                                            }, {
+                                                name: '左肩',
+                                                max: 30000
+                                            }, {
+                                                name: '右肩',
+                                                max: 30000
+                                            }, {
+                                                name: '左腿',
+                                                max: 30000
+                                            }, {
+                                                name: '右腿',
+                                                max: 30000
+                                            }, {
+                                                name: '腰部',
+                                                max: 30000
+                                            }, {
+                                                name: '其他',
+                                                max: 30000
+                                            }],
+                                            'trade_range': [20000, 20000, 12000, 15000, 5000, 20000]
+                                        },
+                                            {
+                                                'dim_year': '上周',
+                                                'radar_indicator': [{
+                                                    name: '颈椎',
+                                                    max: 30000
+                                                }, {
+                                                    name: '左肩',
+                                                    max: 30000
+                                                }, {
+                                                    name: '右肩',
+                                                    max: 30000
+                                                }, {
+                                                    name: '左腿',
+                                                    max: 30000
+                                                }, {
+                                                    name: '右腿',
+                                                    max: 30000
+                                                }, {
+                                                    name: '腰部',
+                                                    max: 30000
+                                                }, {
+                                                    name: '其他',
+                                                    max: 30000
+                                                }],
+                                                'trade_range': [28000, 20000, 28000, 15000, 5000, 20000]
+                                            }, {
+                                                'dim_year': '本周',
+                                                'radar_indicator': [{
+                                                    name: '颈椎',
+                                                    max: 30000
+                                                }, {
+                                                    name: '左肩',
+                                                    max: 30000
+                                                }, {
+                                                    name: '右肩',
+                                                    max: 30000
+                                                }, {
+                                                    name: '左腿',
+                                                    max: 30000
+                                                }, {
+                                                    name: '右腿',
+                                                    max: 30000
+                                                }, {
+                                                    name: '腰部',
+                                                    max: 30000
+                                                }, {
+                                                    name: '其他',
+                                                    max: 30000
+                                                }],
+                                                'trade_range': [28000, 20000, 28000, 15000, 18000, 20000]
+                                            }
+                                        ]
+                                        option = {
+                                            tooltip: {},
+                                            baseOption: {
+                                                title: {
+                                                    textStyle: {
+                                                        color: '#ffffff'
+                                                    }
+                                                },
+                                                timeline: {
+                                                    axisType: 'category',
+                                                    autoPlay: true,
+                                                    playInterval: 5000,
+                                                    data: data_year_rang,
+                                                    label: {
+                                                        formatter: function(s) {
+                                                            //return (new Date(s)).getFullYear();
+                                                            return s.toString();
+                                                        }
+                                                    }
+                                                },
+                                                backgroundColor: '#2c303b',
+                                                tooltip: {},
+                                                series: [{
+                                                    name: '',
+                                                    type: 'radar',
+                                                    areaStyle: {
+                                                        normal: {
+                                                            shadowBlur: 13,
+                                                            shadowColor: 'rgba(0,0,0,.2)',
+                                                            shadowOffsetX: 0,
+                                                            shadowOffsetY: 0,
+                                                            opacity: 1
+                                                        }
+                                                    },
+                                                    itemStyle: {
+                                                        color: '#293C55',
+                                                        borderColor: '#293C55'
+                                                    },
+                                                }]
+                                            },
 
-                // 指定图表的配置项和数据
-                var data_year_rang = [2015, 2016, 2017]
-                var data_dd = [{
-                    'dim_year': 2015,
-                    'radar_indicator': [{
-                        name: '外高桥',
-                        max: 30000
-                    }, {
-                        name: '川沙新镇',
-                        max: 30000
-                    }, {
-                        name: '陆家嘴',
-                        max: 30000
-                    }, {
-                        name: '唐镇',
-                        max: 30000
-                    }, {
-                        name: '浦东新区',
-                        max: 30000
-                    }, {
-                        name: '张江镇',
-                        max: 30000
-                    }, {
-                        name: '其他',
-                        max: 30000
-                    }],
-                    'trade_range': [20000, 20000, 12000, 15000, 5000, 20000]
-                },
-                    {
-                        'dim_year': 2016,
-                        'radar_indicator': [{
-                            name: '外高桥',
-                            max: 30000
-                        }, {
-                            name: '川沙新镇',
-                            max: 30000
-                        }, {
-                            name: '陆家嘴',
-                            max: 30000
-                        }, {
-                            name: '唐镇',
-                            max: 30000
-                        }, {
-                            name: '浦东新区',
-                            max: 30000
-                        }, {
-                            name: '张江镇',
-                            max: 30000
-                        }, {
-                            name: '其他',
-                            max: 30000
-                        }],
-                        'trade_range': [28000, 20000, 28000, 15000, 5000, 20000]
-                    }, {
-                        'dim_year': 2017,
-                        'radar_indicator': [{
-                            name: '外高桥',
-                            max: 30000
-                        }, {
-                            name: '川沙新镇',
-                            max: 30000
-                        },
-                            {
-                                name: '陆家嘴',
-                                max: 30000
-                            }, {
-                                name: '唐镇',
-                                max: 30000
-                            },
-                            {
-                                name: '亲子',
-                                max: 30000
-                            }, {
-                                name: '浦东新区',
-                                max: 30000
-                            }, {
-                                name: '张江镇',
-                                max: 30000
-                            }
-                        ],
-                        'trade_range': [28000, 20000, 28000, 15000, 18000, 20000]
-                    }
-                ]
+                                            options: [{
+                                                title: {
+                                                    text: data_dd[0].dim_year,
+                                                },
+                                                radar: {
 
-                option = {
-                    tooltip: {},
-                    baseOption: {
-                        title: {
-                            textStyle: {
-                                color: '#fff'
-                            }
-                        },
-                        timeline: {
-                            //  show: false,
-                            // y: 0,
-                            axisType: 'category',
-                            // realtime: false,
-                            // loop: false,
-                            autoPlay: true,
-                            // currentIndex: 2,
-                            playInterval: 5000,
-                            // controlStyle: {
-                            //     position: 'left'
-                            // },
-                            data: data_year_rang,
-                            label: {
-                                formatter: function(s) {
-                                    return (new Date(s)).getFullYear();
-                                }
-                            }
-                        },
-                        backgroundColor: {
-                            type: 'radial',
-                            x: 0.4,
-                            y: 0.4,
-                            r: 0.35,
-                            colorStops: [{
-                                offset: 0,
-                                color: '#1E253E' // 0% 处的颜色
-                            }, {
-                                offset: .2,
-                                color: '#242E5D' // 100% 处的颜色
-                            }, {
-                                offset: 1,
-                                color: '#1E253E' // 100% 处的颜色
-                            }],
-                            globalCoord: false // 缺省为 false
-                        },
-                        color: ['#FFD600'],
-                        tooltip: {},
-                        legend: {
-                            //data: ['预算分配（Allocated Budget）', '实际开销（Actual Spending）']
-                        },
+                                                    splitNumber: 6,
+                                                    // shape: 'circle',
+                                                    indicator: data_dd[0].radar_indicator
+                                                },
+                                                series: [{
+                                                    data: [{
+                                                        value: data_dd[0].trade_range
+                                                    }]
+                                                }]
+                                            },
 
-                        series: [{
-                            name: '',
-                            type: 'radar',
-                            areaStyle: {
-                                normal: {
-                                    shadowBlur: 13,
-                                    shadowColor: 'rgba(0,0,0,.2)',
-                                    shadowOffsetX: 0,
-                                    shadowOffsetY: 0,
-                                    opacity: 1
-                                }
-                            },
-                            itemStyle: {
-                                color: '#293C55',
-                                borderColor: '#293C55'
-                            },
-                        }]
-                    },
+                                                {
+                                                    title: {
+                                                        text: data_dd[1].dim_year,
+                                                    },
+                                                    radar: {
 
-                    options: [{
-                        title: {
-                            text: data_dd[0].dim_year,
-                        },
-                        radar: {
+                                                        splitNumber: 6,
+                                                        // shape: 'circle',
+                                                        indicator: data_dd[1].radar_indicator
+                                                    },
+                                                    series: [{
+                                                        data: [{
+                                                            value: data_dd[1].trade_range
+                                                        }]
+                                                    }]
+                                                },
+                                                {
+                                                    title: {
+                                                        text: data_dd[2].dim_year,
+                                                    },
+                                                    radar: {
 
-                            splitNumber: 6,
-                            // shape: 'circle',
-                            indicator: data_dd[0].radar_indicator
-                        },
-                        series: [{
-                            data: [{
-                                value: data_dd[0].trade_range
-                            }]
-                        }]
-                    },
-
-                        {
-                            title: {
-                                text: data_dd[1].dim_year,
-                            },
-                            radar: {
-
-                                splitNumber: 6,
-                                // shape: 'circle',
-                                indicator: data_dd[1].radar_indicator
-                            },
-                            series: [{
-                                data: [{
-                                    value: data_dd[1].trade_range
-                                }]
-                            }]
-                        },
-                        {
-                            title: {
-                                text: data_dd[2].dim_year,
-                            },
-                            radar: {
-
-                                splitNumber: 6,
-                                // shape: 'circle',
-                                indicator: data_dd[2].radar_indicator
-                            },
-                            series: [{
-                                data: [{
-                                    value: data_dd[2].trade_range
-                                }]
-                            }]
-                        }
+                                                        splitNumber: 6,
+                                                        // shape: 'circle',
+                                                        indicator: data_dd[2].radar_indicator
+                                                    },
+                                                    series: [{
+                                                        data: [{
+                                                            value: data_dd[2].trade_range
+                                                        }]
+                                                    }]
+                                                }
 
 
-                    ]
-                };
+                                            ]
+                                        };
 
-                // 使用刚指定的配置项和数据显示图表。
-                myChart.setOption(option);
-            </script>
+                                        // 使用刚指定的配置项和数据显示图表。
+                                        personChart.setOption(option);
+                                    </script>
+
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
