@@ -18,7 +18,7 @@ public class PoseController {
     @Autowired
     private CourseRepository courseRepository;
 
-    @RequestMapping(value = "course/postdata",method = RequestMethod.GET)
+    @RequestMapping(value = "course/postdata",method = RequestMethod.POST)
     @ResponseBody
     public Map<String ,Object> postData(@RequestParam("actionid")String actionid,
                                         @RequestParam("part")List<String> part,
