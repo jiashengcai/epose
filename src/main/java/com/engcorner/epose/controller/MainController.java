@@ -167,27 +167,6 @@ public class MainController implements WebMvcConfigurer {
         return "redirect:/login";
     }
 
-    @GetMapping(value = "sendAjax")
-    @ResponseBody
-    public String sendAjax(@RequestParam(value = "name",defaultValue = "test") String name){
-        System.out.println(name);
-        return "Done";
-    }
-
-
-
-
-    //把接送数据传输到前端页面
-    @GetMapping(value = "/getAjax")
-    @ResponseBody
-    public Map<String, String> getAjax(){
-        Map<String, String> map= new HashMap<>();
-        map.put("1", "1");
-        map.put("2", "4");
-        return map;
-    }
-
-
 
 }
 
