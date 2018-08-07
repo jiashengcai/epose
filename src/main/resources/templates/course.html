@@ -32,6 +32,11 @@
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" th:href="@{/assets/css/style.css}">
     <!-- END Custom CSS-->
+    <script th:src="@{/js/tf.min.js}"></script>
+    <script th:src="@{/js/posenet.min.js}"></script>
+    <script th:src="@{/js/jquery-3.3.1.js}"></script>
+    <script th:src="@{/js/FileSaver.js}"></script>
+    <script th:src="@{/js/epose.js}"></script>
     <script type="text/javascript">
         function changeSrc(Text) {
             document.getElementById("content").src;
@@ -142,13 +147,6 @@
 <!-- CONTENT -->
 
 <div class="" th:class="${actionid!=''?'app-content content container-fluid':'hidden'}" >
-
-
-    <script th:src="@{/js/tf.min.js}"></script>
-    <script th:src="@{/js/posenet.min.js}"></script>
-    <script th:src="@{/js/jquery-3.3.1.js}"></script>
-    <script th:src="@{/js/FileSaver.js}"></script>
-    <script th:src="@{/js/epose.js}"></script>
     <!--页面内容-->
     <div class="content-wrapper">
         <div class="content-header row">
@@ -221,6 +219,8 @@
                     total : total
                 },
                 success : function(date,status){
+                    console.log(date);
+                    console.log(status);
                     if(status=="success"){
                         console.log("success");
                     }else {
@@ -295,7 +295,12 @@
     <!-- ... -->
 </footer>
 
+
+<!---->
+
+
 <!-- BEGIN VENDOR JS-->
+
 <script th:src="@{/app-assets/vendors/js/vendors.min.js}" type="text/javascript"></script>
 <!-- BEGIN VENDOR JS-->
 <!-- BEGIN PAGE VENDOR JS-->
