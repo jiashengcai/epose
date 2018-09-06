@@ -100,8 +100,33 @@
                     <!--TODO 动作标题-->
                     <li class="has-sub is-shown"><a class="menu-item" href="#" th:text="${course.getName()}"></a>
                         <ul class="menu-content" style="">
+<<<<<<< HEAD
+                            <li th:class="${actionid} == '1-1' ? 'active'"><a class="menu-item" href="#" th:href="@{/class2(actionid='1-1')}" data-i18n="nav.dash.ecommerce"><i class="ft-check"></i>动作一</a>
+                            </li>
+                            <li th:class="${actionid} == '1-2' ? 'active'"><a class="menu-item" href="#" th:href="@{/class2(actionid='1-2')}" data-i18n="nav.dash.crypto"><i class="ft-play"></i>动作二</a>
+                            </li>
+                            <li th:class="${actionid} == '1-3' ? 'active'"><a class="menu-item" href="#" th:href="@{/class2(actionid='1-3')}" data-i18n="nav.dash.crypto"><i class="ft-star"></i>动作三</a>
+                            </li>
+                           <!-- <li class=""><a class="menu-item" href="#" onclick="changeSrc('action/action1-4.html')" data-i18n="nav.dash.crypto"><i class="ft-star"></i>动作四</a>
+                            </li>-->
+
+                        </ul>
+                    </li>
+
+                    <li class="has-sub is-shown"><a class="menu-item" href="#">正位瑜伽下犬变体式</a>
+                        <ul class="menu-content" style="">
+                            <li class=""><a class="menu-item" href="#" onclick="changeSrc('action/action2-1.html')" data-i18n="nav.dash.ecommerce">
+                                <i class="ft-star"></i>动作一</a>
+                            </li>
+                            <li><a class="menu-item" href="#" onclick="changeSrc('action/action2-2.html')" data-i18n="nav.dash.crypto"><i class="ft-star"></i>动作二</a>
+                            </li>
+                            <li><a class="menu-item" href="#" onclick="changeSrc('action/action2-3.html')" data-i18n="nav.dash.crypto"><i class="ft-star"></i>动作三</a>
+                            </li>
+
+=======
                             <li th:each="action : ${actions}"><a class="menu-item" href="#" th:href="@{/course(actionid=${action.getId()}, courseid=${course.id})}" data-i18n="nav.dash.ecommerce" th:text="${action.getName()}"><i class="ft-check"></i>动作一</a>
                             </li>
+>>>>>>> cai
                         </ul>
                     </li>
                 </ul>
